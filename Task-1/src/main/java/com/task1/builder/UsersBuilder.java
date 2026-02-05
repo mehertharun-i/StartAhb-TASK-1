@@ -1,7 +1,9 @@
 package com.task1.builder;
 
 import com.task1.dto.AddressClassRequestDto;
+import com.task1.dto.UpdateUserRequestDto;
 import com.task1.dto.UserRequestDto;
+import com.task1.dto.UserResponseDto;
 import com.task1.entity.AddressClass;
 import com.task1.entity.Users;
 
@@ -11,7 +13,7 @@ import java.util.List;
 public class UsersBuilder {
 
     public static Users buildUsersFromUserRequestDto(UserRequestDto userRequestDto){
-        return Users.builder()
+        Users users = Users.builder()
                 .userFirstName(userRequestDto.getUserFirstName())
                 .userLastName(userRequestDto.getUserLastName())
                 .userEmail(userRequestDto.getUserEmail())
@@ -21,6 +23,7 @@ public class UsersBuilder {
                 .userPassword(userRequestDto.getUserPassword())
                 .addressClass(BuildListOfAddressFromAddressRequestDto(userRequestDto.getAddressClass()))
                 .build();
+        return null;
     }
 
     private static List<AddressClass> BuildListOfAddressFromAddressRequestDto(List<AddressClassRequestDto> addressClassRequestDtolist){
@@ -45,5 +48,13 @@ public class UsersBuilder {
                 .build();
     }
 
-
+    public static Users buildUsersFromUserRequestDto(UpdateUserRequestDto updateUserRequestDto, Users users) {
+        users.setUserFirstName(updateUserRequestDto.getUserFirstName());
+        users.setUserLastName(updateUserRequestDto.getUserLastName());
+        users.setUserEmail(updateUserRequestDto.getUserEmail());
+        users.setUserPhoneNumber(updateUserRequestDto.getUserPhoneNumber());
+        users.setUserDateOfBirth(updateUserRequestDto.getUserDateOfBirth());
+        users.setAddressClass(BuildListOfAddressFromAddressRequestDto(updateUserRequestDto.getAddressClass()));
+        return users;
+    }
 }

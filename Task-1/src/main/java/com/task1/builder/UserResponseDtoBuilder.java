@@ -12,6 +12,7 @@ public class UserResponseDtoBuilder {
 
     public static UserResponseDto buildUserResponseDtoFromUsers(Users users) {
         return UserResponseDto.builder()
+                .userId(users.getUserId())
                 .userFirstName(users.getUserFirstName())
                 .userLastName(users.getUserLastName())
                 .userEmail(users.getUserEmail())

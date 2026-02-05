@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -15,6 +16,8 @@ import java.util.List;
 @Builder
 public class UserResponseDto {
 
+    private Long userId;
+
     private String userFirstName;
 
     private String userLastName;
@@ -23,7 +26,7 @@ public class UserResponseDto {
 
     private String userPhoneNumber;
 
-    private Date userDateOfBirth;
+    private LocalDate userDateOfBirth;
 
     private List<AddressClassResponseDto> addressClass;
 

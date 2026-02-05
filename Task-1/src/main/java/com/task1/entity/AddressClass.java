@@ -35,12 +35,8 @@ public class AddressClass {
 
     private int userPinCodeNumber;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private Users user;
-
     public AddressClass(String userHouseNumber, String userStreetName, String userAreaName, String userLandMarkName,
-                        String userDistrictName, String userStateName, String userCountryName, int userPinCodeNumber, Users user) {
+                        String userDistrictName, String userStateName, String userCountryName, int userPinCodeNumber) {
         super();
         this.userHouseNumber = userHouseNumber;
         this.userStreetName = userStreetName;
@@ -50,7 +46,6 @@ public class AddressClass {
         this.userStateName = userStateName;
         this.userCountryName = userCountryName;
         this.userPinCodeNumber = userPinCodeNumber;
-        this.user = user;
     }
 
 }

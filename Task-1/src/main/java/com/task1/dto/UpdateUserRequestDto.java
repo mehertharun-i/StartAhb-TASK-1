@@ -1,6 +1,9 @@
 package com.task1.dto;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -10,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserRequestDto {
+public class UpdateUserRequestDto {
 
     private String userFirstName;
 
@@ -23,9 +26,4 @@ public class UserRequestDto {
     private LocalDate userDateOfBirth;
 
     private List<AddressClassRequestDto> addressClass;
-
-    private String userLoginId;
-
-    private String userPassword;
-
 }

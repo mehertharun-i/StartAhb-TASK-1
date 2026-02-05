@@ -3,6 +3,7 @@ package com.task1.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -29,10 +30,11 @@ public class Users {
     @Column(nullable = false, unique = true)
     private String userPhoneNumber;
 
-    private Date userDateOfBirth;
+    private LocalDate userDateOfBirth;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @ToString.Exclude
+    @JoinColumn(name = "user_id")
     private List<AddressClass> addressClass;
 
     @Column(nullable = false, unique = true)
@@ -42,7 +44,7 @@ public class Users {
     private String userPassword;
 
     public Users(String userFirstName, String userLastName, String userEmail, String userPhoneNumber,
-                     Date userDateOfBirth, List<AddressClass> addressClass, String userLoginId, String userPassword) {
+                     LocalDate userDateOfBirth, List<AddressClass> addressClass, String userLoginId, String userPassword) {
         super();
         this.userFirstName = userFirstName;
         this.userLastName = userLastName;
