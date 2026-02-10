@@ -47,7 +47,7 @@ public class userServiceImplementation implements UserService {
     @Override
     public UserResponseDto updateUser(UpdateUserRequestDto updateUserRequestDto, Long userId) {
         Users users = userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException("User not found"));
-        Users updatedUsers = UsersBuilder.buildUsersFromUserRequestDto(updateUserRequestDto, users);
+        Users updatedUsers = UsersBuilder.buildUsersFromUpdatedUserRequestDto(updateUserRequestDto, users, userId);
         Users updatedUserSaved = userRepository.save(updatedUsers);
         return UserResponseDtoBuilder.buildUserResponseDtoFromUsers(updatedUserSaved);
     }

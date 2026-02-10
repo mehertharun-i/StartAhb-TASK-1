@@ -1,0 +1,101 @@
+<div class="home-container">
+  <!-- Navigation Header -->
+  <nav class="navbar">
+    <div class="navbar-content">
+      <div class="navbar-brand">
+        <span class="brand-icon">🎯</span>
+        <span class="brand-name">SecureApp</span>
+      </div>
+      <div class="navbar-user">
+        <span class="user-greeting">Welcome, {{ currentUser || 'User' }}!</span>
+        <button class="btn-logout" (click)="logout()" title="Sign out">
+          <span>🚪</span>
+          <span>Logout</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="content-wrapper">
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="hero-content">
+          <h1>Welcome to SecureApp</h1>
+          <p class="subtitle">You are securely signed in.</p>
+        </div>
+      </section>
+
+      <!-- Info Cards -->
+      <section class="cards-grid">
+        <!-- Token Status Card -->
+        <div class="card">
+          <div class="card-icon">🔐</div>
+          <h3>Token Status</h3>
+          <p class="card-text">Your JWT token is stored securely in local storage and will automatically refresh before expiration.</p>
+          <div class="card-status">
+            <span class="status-badge status-active">✓ Active</span>
+          </div>
+        </div>
+
+        <!-- Auto Refresh Card -->
+        <div class="card">
+          <div class="card-icon">🔄</div>
+          <h3>Auto Refresh</h3>
+          <p class="card-text">Tokens expire every 60 seconds and are automatically refreshed 10 seconds before expiration to keep you logged in.</p>
+          <div class="card-status">
+            <span class="status-badge status-enabled">✓ Enabled</span>
+          </div>
+        </div>
+
+        <!-- Security Card -->
+        <div class="card">
+          <div class="card-icon">🛡️</div>
+          <h3>Security</h3>
+          <p class="card-text">Your authentication is protected by industry-standard JWT tokens and secure HTTP interceptors.</p>
+          <div class="card-status">
+            <span class="status-badge status-secure">✓ Secure</span>
+          </div>
+        </div>
+
+        <!-- Features Card -->
+        <div class="card">
+          <div class="card-icon">⚡</div>
+          <h3>Features</h3>
+          <p class="card-text">Enjoy seamless authentication with automatic token management and continuous session maintenance.</p>
+          <div class="card-status">
+            <span class="status-badge status-ready">✓ Ready</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Details Section -->
+      <section class="details-section">
+        <h2>How It Works</h2>
+        <div class="steps-container">
+          <div class="step">
+            <div class="step-number">1</div>
+            <h4>Login</h4>
+            <p>Sign in with your credentials to receive a JWT token.</p>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <h4>Storage</h4>
+            <p>Token is stored in browser's localStorage for persistence.</p>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <h4>Auto Refresh</h4>
+            <p>System monitors token expiration and refreshes automatically.</p>
+          </div>
+          <div class="step">
+            <div class="step-number">4</div>
+            <h4>Continuous Access</h4>
+            <p>Stay logged in without manual re-authentication.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>

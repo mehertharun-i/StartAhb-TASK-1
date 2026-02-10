@@ -1,0 +1,331 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <div class="auth-header">
+      <div class="logo-circle">
+        <span class="logo-icon">✨</span>
+      </div>
+      <h1>Create Account</h1>
+      <p class="subtitle">Sign up to get started</p>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="auth-form">
+      <!-- First Name Field -->
+      <div class="form-group">
+        <label for="firstName" class="form-label">First Name</label>
+        <div class="input-wrapper">
+          <input
+            id="firstName"
+            type="text"
+            formControlName="firstName"
+            placeholder="Enter your first name"
+            class="form-input"
+            [class.input-error]="form.get('firstName')?.touched && form.get('firstName')?.invalid"
+          />
+          <span class="input-icon">👤</span>
+        </div>
+        <div class="error-message" *ngIf="form.get('firstName')?.touched && firstNameError">
+          {{ firstNameError }}
+        </div>
+      </div>
+
+      <!-- Last Name Field -->
+      <div class="form-group">
+        <label for="lastName" class="form-label">Last Name</label>
+        <div class="input-wrapper">
+          <input
+            id="lastName"
+            type="text"
+            formControlName="lastName"
+            placeholder="Enter your last name"
+            class="form-input"
+            [class.input-error]="form.get('lastName')?.touched && form.get('lastName')?.invalid"
+          />
+          <span class="input-icon">👤</span>
+        </div>
+        <div class="error-message" *ngIf="form.get('lastName')?.touched && lastNameError">
+          {{ lastNameError }}
+        </div>
+      </div>
+
+      <!-- Email Field -->
+      <div class="form-group">
+        <label for="email" class="form-label">Email</label>
+        <div class="input-wrapper">
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            placeholder="Enter your email address"
+            class="form-input"
+            [class.input-error]="form.get('email')?.touched && form.get('email')?.invalid"
+          />
+          <span class="input-icon">📧</span>
+        </div>
+        <div class="error-message" *ngIf="form.get('email')?.touched && emailError">
+          {{ emailError }}
+        </div>
+      </div>
+
+      <!-- Phone Number Field -->
+      <div class="form-group">
+        <label for="phoneNumber" class="form-label">Phone Number</label>
+        <div class="input-wrapper">
+          <input
+            id="phoneNumber"
+            type="tel"
+            formControlName="phoneNumber"
+            placeholder="Enter your phone number (10+ digits)"
+            class="form-input"
+            [class.input-error]="form.get('phoneNumber')?.touched && form.get('phoneNumber')?.invalid"
+          />
+          <span class="input-icon">📱</span>
+        </div>
+        <div class="error-message" *ngIf="form.get('phoneNumber')?.touched && phoneNumberError">
+          {{ phoneNumberError }}
+        </div>
+      </div>
+
+      <!-- Date of Birth Field -->
+      <div class="form-group">
+        <label for="dateOfBirth" class="form-label">Date of Birth</label>
+        <div class="input-wrapper">
+          <input
+            id="dateOfBirth"
+            type="date"
+            formControlName="dateOfBirth"
+            class="form-input"
+            [class.input-error]="form.get('dateOfBirth')?.touched && form.get('dateOfBirth')?.invalid"
+          />
+          <span class="input-icon">📅</span>
+        </div>
+        <div class="error-message" *ngIf="form.get('dateOfBirth')?.touched && dateOfBirthError">
+          {{ dateOfBirthError }}
+        </div>
+      </div>
+
+      <!-- Username Field -->
+      <div class="form-group">
+        <label for="username" class="form-label">Username</label>
+        <div class="input-wrapper">
+          <input
+            id="username"
+            type="text"
+            formControlName="username"
+            placeholder="Choose a username"
+            class="form-input"
+            [class.input-error]="form.get('username')?.touched && form.get('username')?.invalid"
+          />
+          <span class="input-icon">🏷️</span>
+        </div>
+        <div class="error-message" *ngIf="form.get('username')?.touched && usernameError">
+          {{ usernameError }}
+        </div>
+      </div>
+
+      <!-- Password Field -->
+      <div class="form-group">
+        <label for="password" class="form-label">Password</label>
+        <div class="input-wrapper">
+          <input
+            id="password"
+            [type]="showPassword() ? 'text' : 'password'"
+            formControlName="password"
+            placeholder="Create a strong password"
+            class="form-input"
+            [class.input-error]="form.get('password')?.touched && form.get('password')?.invalid"
+          />
+          <button
+            type="button"
+            class="toggle-password"
+            (click)="togglePassword()"
+            tabindex="-1"
+          >
+            {{ showPassword() ? '👁️' : '👁️‍🗨️' }}
+          </button>
+        </div>
+        <div class="error-message" *ngIf="form.get('password')?.touched && passwordError">
+          {{ passwordError }}
+        </div>
+      </div>
+
+      <!-- Confirm Password Field -->
+      <div class="form-group">
+        <label for="confirmPassword" class="form-label">Confirm Password</label>
+        <div class="input-wrapper">
+          <input
+            id="confirmPassword"
+            [type]="showConfirmPassword() ? 'text' : 'password'"
+            formControlName="confirmPassword"
+            placeholder="Confirm your password"
+            class="form-input"
+            [class.input-error]="form.get('confirmPassword')?.touched && form.get('confirmPassword')?.invalid"
+          />
+          <button
+            type="button"
+            class="toggle-password"
+            (click)="toggleConfirmPassword()"
+            tabindex="-1"
+          >
+            {{ showConfirmPassword() ? '👁️' : '👁️‍🗨️' }}
+          </button>
+        </div>
+        <div class="error-message" *ngIf="form.get('confirmPassword')?.touched && confirmPasswordError">
+          {{ confirmPasswordError }}
+        </div>
+      </div>
+
+      <!-- Address Section (Optional) -->
+      <div style="border-top: 2px solid #e0e0e0; margin-top: 20px; padding-top: 20px;">
+        <h3 style="font-size: 16px; margin-bottom: 15px; color: #333;">📍 Address Details (Optional)</h3>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+          <!-- House Number -->
+          <div class="form-group">
+            <label for="houseNumber" class="form-label">House Number</label>
+            <div class="input-wrapper">
+              <input
+                id="houseNumber"
+                type="text"
+                formControlName="houseNumber"
+                placeholder="House number"
+                class="form-input"
+              />
+              <span class="input-icon">🏠</span>
+            </div>
+          </div>
+
+          <!-- Street Name -->
+          <div class="form-group">
+            <label for="streetName" class="form-label">Street Name</label>
+            <div class="input-wrapper">
+              <input
+                id="streetName"
+                type="text"
+                formControlName="streetName"
+                placeholder="Street name"
+                class="form-input"
+              />
+              <span class="input-icon">🛣️</span>
+            </div>
+          </div>
+
+          <!-- Area Name -->
+          <div class="form-group">
+            <label for="areaName" class="form-label">Area Name</label>
+            <div class="input-wrapper">
+              <input
+                id="areaName"
+                type="text"
+                formControlName="areaName"
+                placeholder="Area name"
+                class="form-input"
+              />
+              <span class="input-icon">📍</span>
+            </div>
+          </div>
+
+          <!-- Landmark Name -->
+          <div class="form-group">
+            <label for="landMarkName" class="form-label">Landmark</label>
+            <div class="input-wrapper">
+              <input
+                id="landMarkName"
+                type="text"
+                formControlName="landMarkName"
+                placeholder="Nearby landmark"
+                class="form-input"
+              />
+              <span class="input-icon">🏛️</span>
+            </div>
+          </div>
+
+          <!-- District Name -->
+          <div class="form-group">
+            <label for="districtName" class="form-label">District</label>
+            <div class="input-wrapper">
+              <input
+                id="districtName"
+                type="text"
+                formControlName="districtName"
+                placeholder="District"
+                class="form-input"
+              />
+              <span class="input-icon">🗺️</span>
+            </div>
+          </div>
+
+          <!-- State Name -->
+          <div class="form-group">
+            <label for="stateName" class="form-label">State</label>
+            <div class="input-wrapper">
+              <input
+                id="stateName"
+                type="text"
+                formControlName="stateName"
+                placeholder="State"
+                class="form-input"
+              />
+              <span class="input-icon">🌍</span>
+            </div>
+          </div>
+
+          <!-- Country Name -->
+          <div class="form-group">
+            <label for="countryName" class="form-label">Country</label>
+            <div class="input-wrapper">
+              <input
+                id="countryName"
+                type="text"
+                formControlName="countryName"
+                placeholder="Country"
+                class="form-input"
+              />
+              <span class="input-icon">🌐</span>
+            </div>
+          </div>
+
+          <!-- Pin Code -->
+          <div class="form-group">
+            <label for="pinCode" class="form-label">Pin Code</label>
+            <div class="input-wrapper">
+              <input
+                id="pinCode"
+                type="text"
+                formControlName="pinCode"
+                placeholder="Pin code"
+                class="form-input"
+                [class.input-error]="form.get('pinCode')?.touched && form.get('pinCode')?.invalid"
+              />
+              <span class="input-icon">📮</span>
+            </div>
+            <div class="error-message" *ngIf="form.get('pinCode')?.touched && pinCodeError">
+              {{ pinCodeError }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        class="btn-submit"
+        [disabled]="form.invalid || loading()"
+      >
+        <span *ngIf="!loading()">Create Account</span>
+        <span *ngIf="loading()" class="loading-spinner"></span>
+      </button>
+
+      <!-- Error Alert -->
+      <div class="alert alert-error" *ngIf="error()">
+        <span class="alert-icon">⚠️</span>
+        <span>{{ error() }}</span>
+      </div>
+    </form>
+
+    <div class="auth-footer">
+      <p>Already have an account? 
+        <a routerLink="/login" class="link-login">Sign in</a>
+      </p>
+    </div>
+  </div>
+</div>

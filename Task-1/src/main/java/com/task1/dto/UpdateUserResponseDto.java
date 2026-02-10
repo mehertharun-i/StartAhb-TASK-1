@@ -14,7 +14,9 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class UpdateUserResponseDto {
-    
+
+    private long userId;
+
     private String userFirstName;
 
     private String userLastName;

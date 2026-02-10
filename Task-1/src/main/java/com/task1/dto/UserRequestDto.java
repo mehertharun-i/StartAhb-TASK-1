@@ -3,7 +3,6 @@ package com.task1.dto;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Data

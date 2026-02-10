@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
 @Builder
 public class AddressClassResponseDto {
 
+    private long addressClassId;
+
     private String userHouserNumber;
 
     private String userStreetName;

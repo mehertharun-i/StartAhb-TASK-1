@@ -33,6 +33,7 @@ public class UserResponseDtoBuilder {
 
     private static AddressClassResponseDto buildAddressResponseDtoFromAddressClass(AddressClass addressClass) {
         return AddressClassResponseDto.builder()
+                .addressClassId(addressClass.getUserAddressId())
                 .userHouserNumber(addressClass.getUserHouseNumber())
                 .userStreetName(addressClass.getUserStreetName())
                 .userAreaName(addressClass.getUserAreaName())

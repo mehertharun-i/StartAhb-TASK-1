@@ -1,9 +1,6 @@
 package com.task1.builder;
 
-import com.task1.dto.AddressClassRequestDto;
-import com.task1.dto.UpdateUserRequestDto;
-import com.task1.dto.UserRequestDto;
-import com.task1.dto.UserResponseDto;
+import com.task1.dto.*;
 import com.task1.entity.AddressClass;
 import com.task1.entity.Users;
 
@@ -23,7 +20,7 @@ public class UsersBuilder {
                 .userPassword(userRequestDto.getUserPassword())
                 .addressClass(BuildListOfAddressFromAddressRequestDto(userRequestDto.getAddressClass()))
                 .build();
-        return null;
+        return users;
     }
 
     private static List<AddressClass> BuildListOfAddressFromAddressRequestDto(List<AddressClassRequestDto> addressClassRequestDtolist){
@@ -48,13 +45,38 @@ public class UsersBuilder {
                 .build();
     }
 
-    public static Users buildUsersFromUserRequestDto(UpdateUserRequestDto updateUserRequestDto, Users users) {
+    public static Users buildUsersFromUpdatedUserRequestDto(UpdateUserRequestDto updateUserRequestDto, Users users, Long id) {
+        users.setUserId(id);
         users.setUserFirstName(updateUserRequestDto.getUserFirstName());
         users.setUserLastName(updateUserRequestDto.getUserLastName());
         users.setUserEmail(updateUserRequestDto.getUserEmail());
         users.setUserPhoneNumber(updateUserRequestDto.getUserPhoneNumber());
         users.setUserDateOfBirth(updateUserRequestDto.getUserDateOfBirth());
-        users.setAddressClass(BuildListOfAddressFromAddressRequestDto(updateUserRequestDto.getAddressClass()));
+        users.setAddressClass(BuildListOfUpdatedAddressFromAddressRequestDto(updateUserRequestDto.getAddressClass(), users.getAddressClass()));
         return users;
     }
+
+    private static List<AddressClass> BuildListOfUpdatedAddressFromAddressRequestDto(List<UpdateAddressClassRequestDto> addressClassRequestDtoList, List<AddressClass> addressClassList) {
+
+        for(int i = 0; i < addressClassRequestDtoList.size(); i++){
+            AddressClass addressClass = buildAddressFromAddressClassRequestDtos(addressClassRequestDtoList.get(i), addressClassList.get(i));
+            addressClassList.set(addressClassList.indexOf(addressClass), addressClass);   // for Updating on existing list use list.set() instead of list.add() method
+        }
+        return addressClassList;
+    }
+
+    private static AddressClass buildAddressFromAddressClassRequestDtos(UpdateAddressClassRequestDto addressClassRequestDto, AddressClass addressClass) {
+        addressClass.setUserHouseNumber(addressClassRequestDto.getUserHouseNumber());
+        addressClass.setUserStreetName(addressClassRequestDto.getUserStreetName());
+        addressClass.setUserAreaName(addressClassRequestDto.getUserAreaName());
+        addressClass.setUserLandMarkName(addressClassRequestDto.getUserLandMarkName());
+        addressClass.setUserDistrictName(addressClassRequestDto.getUserDistrictName());
+        addressClass.setUserStateName(addressClassRequestDto.getUserStateName());
+        addressClass.setUserCountryName(addressClassRequestDto.getUserCountryName());
+        addressClass.setUserPinCodeNumber(addressClassRequestDto.getUserPinCodeNumber());
+        addressClass.setUserAddressId(addressClass.getUserAddressId());
+        return addressClass;
+    }
+
+
 }

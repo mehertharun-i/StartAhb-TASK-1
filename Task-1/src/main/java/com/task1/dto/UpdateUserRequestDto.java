@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Data
@@ -25,5 +24,5 @@ public class UpdateUserRequestDto {
 
     private LocalDate userDateOfBirth;
 
-    private List<AddressClassRequestDto> addressClass;
+    private List<UpdateAddressClassRequestDto> addressClass;
 }
